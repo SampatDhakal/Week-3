@@ -1,5 +1,8 @@
 function Pokemon (name,type,attacks) { // TODO: full up constructor args
 // TODO: fill up constructor
+this._name = name;
+this._type = type;
+this._attacks = attacks;
 }
 
 export const TYPE_FIRE = 'fire'
@@ -64,3 +67,7 @@ Pokemon.prototype.getAttackDamageWrtType = function (receiverPokemon) {
   }
 }
 
+const pokemon1 = new Pokemon("pikachu","fire","Paralyze")
+const pokemon2 = new Pokemon("bulbasaur","grass","SeedBomb")
+console.log(pokemon2.attack("SeedBomb","pikachu"))
+console.log(pokemon1.getAttackDamageWrtType("pikachu"))
