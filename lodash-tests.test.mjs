@@ -25,7 +25,7 @@ import { defineTest, runTests, assertNotEqual, assertEqual } from './test-utils.
 
   defineTest('Testing zip array', () => {
     // assertEqual(zip([Infinity,Infinity],[Infinity,Infinity],[Infinity,Infinity]),[[Infinity,Infinity,Infinity],[Infinity,Infinity,Infinity]], 'should zip the arrays')
-    assertEqual(zip(['a','b'],[1,2],[true,false]),[["a",1,true],["b",2,false]], 'should zip the arrays')
+    assertEqual(zip(['a','b'],[1,2],[true,false]),[ [ 'a', 1, true ], [ 'b', 2, false ] ], 'should zip the arrays')
   })
   
 
@@ -40,5 +40,5 @@ import { defineTest, runTests, assertNotEqual, assertEqual } from './test-utils.
   })
 
 
-  console.log(filter(users,function(o){return!o.active;}))
+  console.log(zip(['a','b'],[1,2],[true,false]))
   runTests()

@@ -1,4 +1,4 @@
-function Pokemon (name,type,attacks) { // TODO: full up constructor args
+export function Pokemon (name,type,attacks) { // TODO: full up constructor args
 // TODO: fill up constructor
 this._name = name;
 this._type = type;
@@ -59,15 +59,16 @@ Pokemon.prototype.getAttackDamageWrtType = function (receiverPokemon) {
   const receiverStrongAgainstType = Pokemon.TYPE_ADVANTAGE_MAPPING[receiverType]
 
   if (attackerStrongAgainstType !== receiverType && receiverStrongAgainstType !== attackerType) {
-    return 190
+    return 100
   } else if (receiverStrongAgainstType === attackerType) {
     return 50
   } else {
-    return 220
+    return 150
   }
 }
-
 const pikachu = new Pokemon("pikachu","fire","Paralyze")
 const bulbasaur = new Pokemon("bulbasaur","grass","SeedBomb")
+const squirtle = new Pokemon("squirtle","water","FlareBliz")
 console.log(bulbasaur.attack("SeedBomb",pikachu))
-console.log(bulbasaur.getAttackDamageWrtType(pikachu))
+console.log(pikachu.getAttackDamageWrtType(pikachu))
+console.log(squirtle.getAttackDamageWrtType(bulbasaur))
