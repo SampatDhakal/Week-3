@@ -58,16 +58,17 @@ Pokemon.prototype.getAttackDamageWrtType = function (receiverPokemon) {
   const attackerStrongAgainstType = Pokemon.TYPE_ADVANTAGE_MAPPING[attackerType]
   const receiverStrongAgainstType = Pokemon.TYPE_ADVANTAGE_MAPPING[receiverType]
 
-  if (attackerStrongAgainstType !== receiverType) {
-    return 190
-  } else if (receiverStrongAgainstType === attackerType) {
-    return 50
-  } else {
+  if (attackerStrongAgainstType !== receiverType) {  // attacker same or weaker attacker weak ! == receiver
+    if (receiverStrongAgainstType === attackerType) {  //attacker weaker
+      return 50 }                                   
+    return 190                                        //attacker same
+  } 
+  else {        //attacker is stronger (strong:weak) attacker weak ==receiver
     return 220
   }
 }
 
-const pokemon1 = new Pokemon("pikachu","fire","Paralyze")
-const pokemon2 = new Pokemon("bulbasaur","grass","SeedBomb")
-console.log(pokemon2.attack("SeedBomb","pikachu"))
-console.log(pokemon1.getAttackDamageWrtType("pikachu"))
+const pikachu = new Pokemon("pikachu","grass","Paralyze")
+const bulbasaur = new Pokemon("bulbasaur","fire","SeedBomb")
+console.log(bulbasaur.attack("SeedBomb","pikachu"))
+console.log(bulbasaur.getAttackDamageWrtType(pikachu))
