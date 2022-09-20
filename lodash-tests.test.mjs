@@ -10,8 +10,6 @@ import { inRange,zip,filter } from 'lodash-es'
 import { defineTest, runTests, assertNotEqual, assertEqual } from './test-utils.mjs'
 
 
-
-
   defineTest('Testing inRange true values', () => {
     assertEqual(inRange(3,2,4), true , 'should be true')
   })
@@ -24,7 +22,6 @@ import { defineTest, runTests, assertNotEqual, assertEqual } from './test-utils.
   })
 
   defineTest('Testing zip array', () => {
-    // assertEqual(zip([Infinity,Infinity],[Infinity,Infinity],[Infinity,Infinity]),[[Infinity,Infinity,Infinity],[Infinity,Infinity,Infinity]], 'should zip the arrays')
     assertEqual(zip(['a','b'],[1,2],[true,false]),[ [ 'a', 1, true ], [ 'b', 2, false ] ], 'should zip the arrays')
   })
   

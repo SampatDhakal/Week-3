@@ -59,11 +59,11 @@ Pokemon.prototype.getAttackDamageWrtType = function (receiverPokemon) {
   const receiverStrongAgainstType = Pokemon.TYPE_ADVANTAGE_MAPPING[receiverType]
 
   if (attackerStrongAgainstType !== receiverType && receiverStrongAgainstType !== attackerType) {
-    return 100
+    return 190
   } else if (receiverStrongAgainstType === attackerType) {
     return 50
   } else {
-    return 150
+    return 220
   }
 }
 const pikachu = new Pokemon("pikachu","fire","Paralyze")

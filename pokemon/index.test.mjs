@@ -65,3 +65,4 @@ defineTest('Critical attacks should return { damage: expected * 2, miss: false, 
 })
 
 runTests()
+
