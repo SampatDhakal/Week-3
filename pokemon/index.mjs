@@ -1,5 +1,14 @@
 export function Pokemon (name,type,attacks) { // TODO: full up constructor args
 // TODO: fill up constructor
+if (typeof name !== 'string' || !name) {
+  throw new Error ('A pokemon must have a name')
+}
+if (![TYPE_FIRE, TYPE_GRASS, TYPE_WATER]. includes(type)) {
+  throw new Error('Invalid type')
+}
+if (!Array.isArray(attacks)) {
+  throw new Error('attacks must be an array of strings')
+}
 this._name = name;
 this._type = type;
 this._attacks = attacks;
@@ -66,9 +75,9 @@ Pokemon.prototype.getAttackDamageWrtType = function (receiverPokemon) {
     return 220
   }
 }
-const pikachu = new Pokemon("pikachu","fire","Paralyze")
-const bulbasaur = new Pokemon("bulbasaur","grass","SeedBomb")
-const squirtle = new Pokemon("squirtle","water","FlareBliz")
+const pikachu = new Pokemon("pikachu","fire",["Paralyze"])
+const bulbasaur = new Pokemon("bulbasaur","grass",["SeedBomb"])
+const squirtle = new Pokemon("squirtle","water",["FlareBliz"])
 console.log(bulbasaur.attack("SeedBomb",pikachu))
 console.log(pikachu.getAttackDamageWrtType(pikachu))
 console.log(squirtle.getAttackDamageWrtType(bulbasaur))
