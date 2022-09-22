@@ -81,3 +81,14 @@ export function assertThrowsError (fn, matchErrorMessage, message) {
    .join(': ')
   throw new Error(errorMsg)
 }
+
+export function createStub (baseObj, methodToStub, implementation){
+  const actualValue = baseObj[methodToStub]
+  baseObj[methodToStub] = implementation
+
+  return{
+    restore: () => {
+      baseObj[methodToStub] = actualValue
+    }
+  }
+}

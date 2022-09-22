@@ -60,7 +60,13 @@ defineTest('Non existent attacks should throw an error', () => {
 })
 
 defineTest('Missed attacks should return { damage: 0, miss: true, critical: false }', () => {
-    
+    const { restore: restoreRandomFn } = createStub(bulbasaur, '_randomlyDetermineAttackStatus', () => ({miss: true, critical: false}))
+    const attackResult = bulbasaur.attack("Paralyze", pikachu)
+    restoreRandomFn()
+    const { critical, damage, miss } = attackResult
+    assertEqual(critical, false, 'Should not be a critical')
+    assertEqual(damage, 0, 'Damage should be 0')
+    assertEqual(miss, true, 'Should be a miss')
 })
 
 defineTest('Critical attacks should return { damage: expected * 2, miss: false, critical: true }', () => {
