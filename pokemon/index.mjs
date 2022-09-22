@@ -3,11 +3,11 @@ export function Pokemon (name,type,attacks) { // TODO: full up constructor args
 if (typeof name !== 'string' || !name) {
   throw new Error ('A pokemon must have a name')
 }
-if (![TYPE_FIRE, TYPE_GRASS, TYPE_WATER]. includes(type)) {
+if (![TYPE_FIRE, TYPE_GRASS, TYPE_WATER].includes(type)) {
   throw new Error('Invalid type')
 }
 if (!Array.isArray(attacks)) {
-  throw new Error('attacks must be an array of strings')
+  throw new Error('Attacks must be an array of strings')
 }
 this._name = name;
 this._type = type;
@@ -67,12 +67,12 @@ Pokemon.prototype.getAttackDamageWrtType = function (receiverPokemon) {
   const attackerStrongAgainstType = Pokemon.TYPE_ADVANTAGE_MAPPING[attackerType]
   const receiverStrongAgainstType = Pokemon.TYPE_ADVANTAGE_MAPPING[receiverType]
 
-  if (attackerStrongAgainstType !== receiverType && receiverStrongAgainstType !== attackerType) {
-    return 190
+  if (attackerStrongAgainstType === receiverType) {
+    return 150
   } else if (receiverStrongAgainstType === attackerType) {
     return 50
   } else {
-    return 220
+    return 100
   }
 }
 const pikachu = new Pokemon("pikachu","fire",["Paralyze"])
