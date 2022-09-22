@@ -14,7 +14,7 @@
 // When grass attacks fire, 50 damage
 // When fire attacks water, 50 damage
 // When water attacks grass, 50 damage
-
+ 
 // 2. Test Pokemon::attack
 // 2.a Non existent attacks should throw an error
 // 2.b Missed attacks should return { damage: 0, miss: true, critical: false }
@@ -24,9 +24,9 @@
 
 import { Pokemon } from "./index.mjs";
 import { defineTest, runTests, assertNotEqual, assertEqual, assertThrowsError } from "../test-utils.mjs"
-const pikachu = new Pokemon("pikachu", "fire", "Paralyze")
-const bulbasaur = new Pokemon("bulbasaur", "grass", "SeedBomb")
-const squirtle = new Pokemon("squirtle", "water", "FlareBliz")
+const pikachu = new Pokemon("pikachu", "fire", ["Paralyze"])
+const bulbasaur = new Pokemon("bulbasaur", "grass", ["SeedBomb"])
+const squirtle = new Pokemon("squirtle", "water", ["FlareBliz"])
 
 
 
@@ -52,9 +52,12 @@ defineTest('Test not very effective attacks', () => {
 
 })
 
-// defineTest('Non existent attacks should throw an error', () => {
-//     assertThrowsError(bulbasaur.attack("Paralyze", pikachu), 'bulbasaur doesnt know how to do that.', 'Should throw an error')
-// })
+defineTest('Non existent attacks should throw an error', () => {
+    const test= () => {
+        bulbasaur.attack("Paralyze", pikachu)
+    }
+    assertThrowsError(test, 'bulbasaur doesnt know how to do that.', 'Should throw an error')
+})
 
 defineTest('Missed attacks should return { damage: 0, miss: true, critical: false }', () => {
     
