@@ -23,7 +23,7 @@
 // NOTE: these methods might be broken. You might need to fix them *evil laugh*
 
 import { Pokemon } from "./index.mjs";
-import { defineTest, runTests, assertNotEqual, assertEqual, assertThrowsError } from "../test-utils.mjs"
+import { defineTest, runTests, assertNotEqual, assertEqual, assertThrowsError,createStub } from "../test-utils.mjs"
 const pikachu = new Pokemon("pikachu", "fire", ["Paralyze"])
 const bulbasaur = new Pokemon("bulbasaur", "grass", ["SeedBomb"])
 const squirtle = new Pokemon("squirtle", "water", ["FlareBliz"])
@@ -61,7 +61,7 @@ defineTest('Non existent attacks should throw an error', () => {
 
 defineTest('Missed attacks should return { damage: 0, miss: true, critical: false }', () => {
     const { restore: restoreRandomFn } = createStub(bulbasaur, '_randomlyDetermineAttackStatus', () => ({miss: true, critical: false}))
-    const attackResult = bulbasaur.attack("Paralyze", pikachu)
+    const attackResult = bulbasaur.attack("SeedBomb", pikachu)
     restoreRandomFn()
     const { critical, damage, miss } = attackResult
     assertEqual(critical, false, 'Should not be a critical')
@@ -70,7 +70,13 @@ defineTest('Missed attacks should return { damage: 0, miss: true, critical: fals
 })
 
 defineTest('Critical attacks should return { damage: expected * 2, miss: false, critical: true }', () => {
-
+    const { restore: restoreRandomFn } = createStub(bulbasaur, '_randomlyDetermineAttackStatus', () => ({miss: false, critical: true}))
+    const attackResult = bulbasaur.attack("SeedBomb", pikachu)
+    restoreRandomFn()
+    const { critical, damage, miss } = attackResult
+    assertEqual(critical, true, 'Should be critical')
+    assertEqual(damage, 100, 'Damage should be 100')
+    assertEqual(miss, false, 'Should not be a miss')
 })
 
 runTests()
